@@ -27,12 +27,13 @@ parser.add_argument('-d', dest='mp3dir', help='music directory path', type=P, de
 parser.add_argument('-v', dest='verbose', help='be verbose', action='store_true')
 
 def process_files(dir:P):
+    'process music directory to prefix filenames'
     for filepath in dir.glob('*'):
         U = filepath.rename(P.joinpath(filepath.parent, randname(filepath.name)))
         log.debug(f'fl {filepath.name} -> {U.name}')
 
 def randname(name:str):
-    
+    'prefixes filename (or changes prfx if exists)'
     match = re.search(REPREFX, name)
     if match:
         return re.sub(REPREFX, rnd_word(), name)
@@ -40,6 +41,7 @@ def randname(name:str):
         return rnd_word() + name
 
 def rnd_word():  
+    'form prefix word from random chars'
     ww = '['
     for l in random.sample(REDICT, NUMRND):
         ww = ww + l
@@ -76,4 +78,4 @@ if __name__== '__main__':
 
     total = time.time() - begin
     print('Total time: ', round(total,2),'s.')
-    log.info('finished succes')
+    log.info('successfully finished')

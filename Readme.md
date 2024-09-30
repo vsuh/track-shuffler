@@ -9,7 +9,7 @@
 Каталог mp3 файлов можно указать в файле настроек, переменной среды или в командной
 строке.
 
-```
+```sh
 $ python trand.py -h
 usage: ./trackRandomizer add|undo -d mp3DIR [-v]
 
